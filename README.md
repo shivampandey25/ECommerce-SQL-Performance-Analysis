@@ -60,3 +60,23 @@ CREATE TABLE Orders (
     order_delivered_customer_date DATETIME2,
     order_estimated_delivery_date DATETIME2
 );
+
+
+---
+
+## 5. Business Queries & Insights
+
+### 1. Top Revenue Generating Categories
+**Business Question:** Which product categories generate the most revenue for the platform?
+*Methodology: Uses `JOINs` to connect items, products, and English translations, and `GROUP BY` with `SUM` to aggregate revenue.*
+
+```sql
+SELECT TOP 5 
+    pct.product_category_name_english AS Category, 
+    SUM(oi.price) AS Total_Revenue, 
+    COUNT(oi.order_item_id) AS Items_Sold
+FROM Order_Items oi
+JOIN Products p ON oi.product_id = p.product_id
+JOIN Product_Category_Translation pct ON p.product_category_name = pct.product_category_name
+GROUP BY pct.product_category_name_english
+ORDER BY Total_Revenue DESC;
