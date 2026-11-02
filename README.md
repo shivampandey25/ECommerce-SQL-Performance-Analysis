@@ -179,6 +179,5 @@ ORDER BY Total_Transactions DESC;
 | boleto | 19784 | 2869361.27 | 19.04 |
 | voucher | 5775 | 379436.87 | 5.56 |
 | debit_card | 1529 | 217989.79 | 1.47 |
-<img width="937" height="596" alt="image" src="https://github.com/user-attachments/assets/67b4822d-e5a7-42bb-b8a9-ec82dcd91d6c" />
 
 **Insight:** Credit cards overwhelmingly dominate the platform at ~74% of volume. Optimizing the credit card checkout flow and minimizing processing fees should be top priorities.
