@@ -60,11 +60,10 @@ CREATE TABLE Orders (
     order_delivered_customer_date DATETIME2,
     order_estimated_delivery_date DATETIME2
 );
-
-
----
+```
 
 ---
+
 ## 5. Business Queries & Insights
 
 ### 1. Top Revenue Generating Categories
@@ -81,5 +80,4 @@ JOIN Products p ON oi.product_id = p.product_id
 JOIN Product_Category_Translation pct ON p.product_category_name = pct.product_category_name
 GROUP BY pct.product_category_name_english
 ORDER BY Total_Revenue DESC;
-
-
+```
