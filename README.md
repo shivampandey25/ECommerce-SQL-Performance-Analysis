@@ -63,7 +63,8 @@ CREATE TABLE Orders (
 
 
 ---
-'''
+
+---
 ## 5. Business Queries & Insights
 
 ### 1. Top Revenue Generating Categories
