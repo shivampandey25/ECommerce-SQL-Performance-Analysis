@@ -181,3 +181,55 @@ ORDER BY Total_Transactions DESC;
 | debit_card | 1529 | 217989.79 | 1.47 |
 
 **Insight:** Credit cards overwhelmingly dominate the platform at ~74% of volume. Optimizing the credit card checkout flow and minimizing processing fees should be top priorities.
+
+
+
+
+## 🗄️ Database Schema & ER Diagram
+
+### Entity-Relationship (ER) Diagram
+*The following diagram maps the normalized relational database schema implemented in SQL Server.*
+
+```mermaid
+erDiagram
+    CUSTOMERS ||--o{ ORDERS : "places"
+    ORDERS ||--|{ ORDER_ITEMS : "contains"
+    PRODUCTS ||--o{ ORDER_ITEMS : "included_in"
+    SELLERS ||--o{ ORDER_ITEMS : "fulfills"
+    ORDERS ||--|{ ORDER_PAYMENTS : "paid_via"
+    ORDERS ||--o{ ORDER_REVIEWS : "receives"
+    
+    CUSTOMERS {
+        varchar customer_id PK
+        varchar customer_unique_id
+        varchar customer_zip_code_prefix
+        varchar customer_city
+        varchar customer_state
+    }
+    ORDERS {
+        varchar order_id PK
+        varchar customer_id FK
+        varchar order_status
+        datetime order_purchase_timestamp
+        datetime order_delivered_customer_date
+        datetime order_estimated_delivery_date
+    }
+    ORDER_ITEMS {
+        varchar order_id FK
+        int order_item_id
+        varchar product_id FK
+        varchar seller_id FK
+        float price
+        float freight_value
+    }
+    ORDER_PAYMENTS {
+        varchar order_id FK
+        varchar payment_type
+        int payment_installments
+        float payment_value
+    }
+    PRODUCTS {
+        varchar product_id PK
+        varchar product_category_name
+        int product_weight_g
+    }
